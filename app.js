@@ -9,7 +9,7 @@ const auth = require("./router/auth");
 const notes = require("./router/notes");
 
 const corsOptions = {
-  origin: "*",
+  origin: "http://localhost:3000",
   credentials: true,
 };
 
