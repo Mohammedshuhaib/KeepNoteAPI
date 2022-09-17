@@ -18,10 +18,10 @@ module.exports = {
     await nodemailer
       .sendOtp(email, name)
       .then(async (otp) => {
-        res.cookie("otpCode", otp, { httpOnly: true, secure: true });
+        res.cookie("otpCode", otp);
         res.cookie("name", name);
         res.cookie("email", email);
-        res.cookie("password", saltedPassword, { httpOnly: true, secure: true });
+        res.cookie("password", saltedPassword);
         return res.sendStatus(200).json("success");
       })
       .catch((err) => {
@@ -71,8 +71,8 @@ module.exports = {
           maxAge: 6000,
           httpOnly: true,
         });
-        res.cookie("refreshToken", refreshToken, { httpOnly: true });
-        res.cookie("userId", User._id, { httpOnly: true });
+        res.cookie("refreshToken", refreshToken);
+        res.cookie("userId", User._id);
         res.sendStatus(200).json(User.name)
       } else {
         return next(createError(401, "Incorrect password"));
