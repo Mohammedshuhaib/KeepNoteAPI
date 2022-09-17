@@ -8,7 +8,7 @@ const auth = require("./router/auth");
 const notes = require("./router/notes");
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "*",
   credentials: true,
 };
 
@@ -17,7 +17,7 @@ app.options("*", cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.get('/',(req,res,next) => {
+app.get('/',(req,res) => {
   res.send('api connected')
 } )
 app.use("/api", auth);
