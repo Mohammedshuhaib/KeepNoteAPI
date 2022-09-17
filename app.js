@@ -17,6 +17,9 @@ app.options("*", cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.get('/',(req,res,next) => {
+  res.send('api connected')
+} )
 app.use("/", auth);
 app.use("/notes", notes);
 
