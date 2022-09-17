@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/',(req,res,next) => {
   res.send('api connected')
 } )
-app.use("/", auth);
+app.use("/api", auth);
 app.use("/notes", notes);
 
 db.on("error", console.error.bind(console, "Mongodb connection failed"));
