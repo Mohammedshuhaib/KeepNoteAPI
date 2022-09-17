@@ -9,7 +9,7 @@ const auth = require("./router/auth");
 const notes = require("./router/notes");
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000","https://main.d2cv7m88qjqh5l.amplifyapp.com/"],
   credentials: true,
 };
 
