@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const db = require("./db/connection.js");
 const cookieParser = require("cookie-parser");
+require('dotenv').config()
 
 const app = express();
 const auth = require("./router/auth");
@@ -36,7 +37,7 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
-
-app.listen(2000, () => {
+const PORT = process.env.PORT || 2000
+app.listen(PORT, () => {
   console.log("server running on 2000");
 });
