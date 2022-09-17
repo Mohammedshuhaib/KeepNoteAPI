@@ -35,6 +35,7 @@ module.exports = {
 
   SubmitOtp: asyncHandler(async (req, res, next) => {
     let { otpCode, name, email, password } = req.cookies;
+    console.log(otpCode)
     let { otp } = req.body;
     if (otp === otpCode) {
       console.log('ok')
