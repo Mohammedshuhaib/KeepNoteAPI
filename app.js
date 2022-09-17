@@ -39,5 +39,5 @@ app.use((err, req, res, next) => {
 });
 const PORT = process.env.PORT || 2000
 app.listen(PORT, () => {
-  console.log("server running on 2000");
+  console.log(`server running on ${PORT}`);
 });
