@@ -87,8 +87,16 @@ module.exports = {
           maxAge: 6000,
           httpOnly: true,
         });
-        res.cookie("refreshToken", refreshToken);
-        res.cookie("userId", User._id);
+        res.cookie("refreshToken", refreshToken, {
+          sameSite: "none",
+          secure: true,
+          httpOnly: true,
+        });
+        res.cookie("userId", User._id, {
+          sameSite: "none",
+          secure: true,
+          httpOnly: true,
+        });
         res.sendStatus(200).json(User.name);
       } else {
         return next(createError(401, "Incorrect password"));

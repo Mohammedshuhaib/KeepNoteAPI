@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const User = require("../models/auth");
 const expressAsyncHandler = require("express-async-handler");
-const {createError} = require("../createError");
+const { createError } = require("../createError");
 dotenv.config();
 module.exports = {
   token: expressAsyncHandler(async (req, res, next) => {
@@ -12,10 +12,14 @@ module.exports = {
     if (!checkToken) return next(createError(401, "token does not match"));
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return next(createError(403, "Token not verified"));
-      let name = user.name
-      const accessToken = jwt.sign(name, process.env.ACCESS_TOKEN_SECRET)
-      res.cookie("accessToken", accessToken, { maxAge: 9000, http: true });
-      res.sendStatus(200).json('ok')
+      let name = user.name;
+      const accessToken = jwt.sign(name, process.env.ACCESS_TOKEN_SECRET);
+      res.cookie("accessToken", accessToken, {
+        sameSite: "none",
+        secure: true,
+        httpOnly: true,
+      });
+      res.sendStatus(200).json("ok");
     });
   }),
 
