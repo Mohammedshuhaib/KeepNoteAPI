@@ -37,12 +37,16 @@ module.exports = {
     let { otpCode, name, email, password } = req.cookies;
     let { otp } = req.body;
     if (otp === otpCode) {
+      console.log('ok')
       try {
         await user.create({ name, email, password });
-        return res.sendStatus(200).json("otp verification success");
+        return res.status(200).json("otp verification success");
       } catch (err) {
+        console.log(err)
         if (err.code === 11000) {
           return next(createError(409, "User already exist"));
+        } else {
+          return next(createError(500, 'Something went wrong'))
         }
       }
     } else {
